@@ -1,23 +1,45 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import AddTask from './components/AddTask';
+import TaskList from './components/TaskList';
+
 
 function App() {
+
+  const [taskList, setTasksList] = useState([]);
+  // Add Task-----------------------
+  const [task, setTask] = useState('');
+  const taskDataHandler = (e) => setTask(e.target.value);
+  
+
+
+  const onSubmitHandler = (e) => {
+    e.preventDefault()
+    if (!task){
+      return console.log('No hay tareas')
+    }
+    const newTask = {
+      id : crypto.randomUUID(),
+      task
+    }
+    setTasksList([...taskList, newTask]);
+    setTask('')
+    
+  }
+  // End AddTask---------------------
+
+  const deleteTaskHandler = (taskId) => {
+    console.log('Id de la tarea',taskId);
+    setTasksList(taskList.filter(task => task.id !== taskId))
+  
+
+  }
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Todo Manager</h1>
+      <AddTask task = {task} taskDataHandler = {taskDataHandler} onSubmitHandler = {onSubmitHandler}/>
+      <TaskList taskList={taskList} deleteTaskHandler={deleteTaskHandler}/>
     </div>
   );
 }
