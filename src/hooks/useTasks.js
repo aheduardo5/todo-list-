@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const TaskHook = () => {
+export const useTasks = () => {
     
   const [taskList, setTasksList] = useState([]);  
   const [task, setTask] = useState('');

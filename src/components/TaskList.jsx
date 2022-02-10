@@ -1,16 +1,14 @@
 import React from 'react';
-import { TaskHook } from '../hooks/TaskHook';
 import Task from './Task';
 
-const TaskList = () => {
-  const {taskList} =TaskHook()
+const TaskList = ({taskList, deleteTaskHandler}) => {
 
 
   return <div>
     {
       taskList.map(task => {
         return(
-          <Task key={task.id} task = {task} />
+          <Task key={task.id} task = {task} deleteTaskHandler={deleteTaskHandler}/>
         )
       })
     }

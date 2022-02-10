@@ -1,8 +1,7 @@
 import React from 'react'
-import { TaskHook } from '../hooks/TaskHook'
 
-const Task = ({task}) => {
-  const {deleteTaskHandler} = TaskHook()
+
+const Task = ({task, deleteTaskHandler}) => {
   return (
     <>
     <p>{task.task}</p>

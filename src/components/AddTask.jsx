@@ -1,8 +1,6 @@
-import { TaskHook } from "../hooks/TaskHook";
 
 
-const AddTask = () => {
-  const {onSubmitHandler, task, taskDataHandler} = TaskHook();
+const AddTask = ({onSubmitHandler, task, taskDataHandler}) => {
   
   return (
     <div>
