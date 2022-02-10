@@ -3,23 +3,16 @@ import { useState } from "react";
 export const useTasks = () => {
     
   const [taskList, setTasksList] = useState([]);  
-  const [task, setTask] = useState('');
-  const taskDataHandler = (e) => setTask(e.target.value);
-  
 
-
-  const onSubmitHandler = (e) => {
-    e.preventDefault()
-    if (!task){
-      return console.log('No hay tareas')
-    }
+  const onSubmit = (data) => {
+    console.log(data)
     const newTask = {
-      id : crypto.randomUUID(),
-      task
+      id: crypto.randomUUID(),
+      task: data.task
     }
+    console.log(newTask)
     setTasksList([...taskList, newTask]);
-    setTask('')
-    
+    console.log(taskList)
   }
 
   const deleteTaskHandler = (taskId) => {
@@ -27,12 +20,18 @@ export const useTasks = () => {
     setTasksList(taskList.filter(task => task.id !== taskId));
   }
 
+  const taskRequiredOptions = {
+    required: {
+      value: true,
+      message: 'A task is required!'
+    }
+  }
+
   return{
       taskList,
-      task,
-      taskDataHandler,
       deleteTaskHandler,
-      onSubmitHandler
+      onSubmit,
+      taskRequiredOptions
   }
   
 }

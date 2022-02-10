@@ -1,25 +1,31 @@
 import { useContext } from "react";
 import { tasksContext } from "../context/tasksContext";
+import { useForm } from "react-hook-form";
 
 
 const AddTask = () => {
-  
-  const {onSubmitHandler, task, taskDataHandler} = useContext(tasksContext);
+  //Context
+  const {  onSubmit, taskRequiredOptions } = useContext(tasksContext);
+  //useFormHook
+  const {handleSubmit, register,  formState: { errors }, reset	} = useForm({
+    defaultValues: {
+      task: ''
+    }
+  });
+
+
   return (
     <div>
-      <form onSubmit={onSubmitHandler}>
-        <label htmlFor="task">Add a new task: </label>
-        <input
-          type="text"
-          id="task"
-          name="task"
-          value={task}
-          onChange={taskDataHandler}
-          placeholder="Add something..."
-        />
-      <button type="submit">Add Task</button>
-      </form>
-    </div>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <label htmlFor="task">Add a new task: </label>
+      <input
+        id="task"
+        placeholder="Add something..."
+        {...register("task", taskRequiredOptions)}
+      />{errors.task && <div className="error">{errors.task.message}</div>}
+      <button>Add Task</button>
+    </form>
+  </div>
   );
 };
 

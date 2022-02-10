@@ -3,10 +3,10 @@ import { useTasks } from "../hooks/useTasks";
 
 export const tasksContext = createContext({
   taskList: [],
-  task: "",
   taskDataHandler: () => {},
   deleteTaskHandler: () => {},
-  onSubmitHandler: () => {}
+  onSubmit: () => {},
+  taskRequiredOptions: {}
 });
 
 export const TasksContextProvider = ({ children }) => {
