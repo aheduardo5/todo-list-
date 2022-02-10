@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import { tasksContext } from '../context/tasksContext';
 import Task from './Task';
 
-const TaskList = ({taskList, deleteTaskHandler}) => {
+const TaskList = () => {
+const {taskList, deleteTaskHandler} = useContext(tasksContext)
 
 
   return <div>

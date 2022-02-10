@@ -1,7 +1,10 @@
+import { useContext } from "react";
+import { tasksContext } from "../context/tasksContext";
 
 
-const AddTask = ({onSubmitHandler, task, taskDataHandler}) => {
+const AddTask = () => {
   
+  const {onSubmitHandler, task, taskDataHandler} = useContext(tasksContext);
   return (
     <div>
       <form onSubmit={onSubmitHandler}>
